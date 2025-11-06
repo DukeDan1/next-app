@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { UserTable } from './UserTable';
 
 interface Props {
@@ -11,7 +11,9 @@ const UsersPage = async ({ searchParams }: Props) => {
         <div className="container mt-5">
             <h1>Users Page</h1>
             <p>Welcome to the users page!</p>
-            <UserTable sortOrder={sortOrder} />
+            <Suspense fallback={<div>Loading user table...</div>}>
+                <UserTable sortOrder={sortOrder} />
+            </Suspense>
         </div>
     );
 }
